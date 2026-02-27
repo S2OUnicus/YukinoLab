@@ -1,6 +1,10 @@
 <?php
 // サイト：ベースパス
 $sturl = "/pureReview/";
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -27,18 +31,26 @@ $sturl = "/pureReview/";
         <!-- yl-ly-stage ステージパーツ用 -->
         <div id="yl-ly-stage" class="uk-flex uk-flex-column uk-flex-middle">
             <!-- Stage Header -->
-            <?php require_once('../page/parts/stage/header.php'); ?>
+            <header class="uk-flex uk-flex-middle uk-flex-center">
+                <?php require_once('../page/parts/stage/header.php'); ?>
+            </header>
 
             <!-- Stage Navigation -->
-            <?php require_once('../page/parts/stage/nav.php'); ?>
+            <nav class="uk-flex uk-flex-middle uk-flex-center">
+                <?php require_once('../page/parts/stage/nav.php'); ?>
+            </nav>
 
             <!--
             (!! Important !!) Stage Main: [Inquiry]
             -->
-            <?php require_once('inner/_inquiry.php'); ?>
+            <main class="uk-flex uk-flex-column uk-flex-center">
+                <?php require_once('inner/_inquiry.php'); ?>
+            </main>
 
             <!-- Stage Footer -->
-            <?php require_once('../page/parts/stage/footer.php'); ?>
+            <footer class="uk-flex uk-flex-column uk-flex-middle uk-flex-center">
+                <?php require_once('../page/parts/stage/footer.php'); ?>
+            </footer>
         </div>
 
         <!-- yl-ly-cover ステージに浮かぶもの -->

@@ -1,1 +1,1 @@
-<nav>Navigation</nav>
+Navigation

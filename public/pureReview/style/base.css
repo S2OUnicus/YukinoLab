@@ -31,9 +31,24 @@
     min-height: 100%
 }
 
-#yl-ly-ground {z-index: 20}
-#yl-ly-stage {z-index: 60}
-#yl-ly-cover {z-index: 70}
+#yl-ly-ground {
+    z-index: 20;
+
+    background-color: #9fcff7;
+}
+
+#yl-ly-stage {
+    z-index: 60;
+
+    background-color: bisque;
+}
+
+#yl-ly-cover {
+    z-index: 70;
+
+    background-color: chocolate;
+    display: none;
+}
 
 /*
 *  # 目次
