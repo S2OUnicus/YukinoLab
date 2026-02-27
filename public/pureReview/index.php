@@ -16,7 +16,10 @@ error_reporting(E_ALL);
     <?php require_once('page/_shared/link.php'); ?>
 
     <!-- ページ仕様 -->
-    <link rel="stylesheet" href="<?= $sturl ?>s/index.css?<?= time(); ?>">
+    <link rel="stylesheet" href="<?= $sturl ?>style/s/index.css?<?= time(); ?>">
+
+    <!-- ページスクリプト -->
+    <script defer src="<?= $sturl ?>js/s/index.js?<?= time(); ?>"></script>
 </head>
 <body hx-history-elt hx-ext="head-support">
     <noscript>This Page Requires Javascript.</noscript>
@@ -39,7 +42,7 @@ error_reporting(E_ALL);
             </header>
 
             <!-- Stage Navigation -->
-            <nav class="uk-flex uk-flex-middle uk-flex-center">
+            <nav class="uk-flex uk-flex-middle uk-flex-center" hx-swap-oob="true">
                 <?php require_once('page/parts/stage/nav.php'); ?>
             </nav>
 
