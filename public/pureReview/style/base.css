@@ -1,82 +1,61 @@
 @charset "utf-8";
 
 /*
-*    # Yukino Lab Pure Review Styles
-*
-*    @ Author: @S2OUnicus, @S2OValor
-*
+*  Yukino Lab Pure Review Styles
+*  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+*  @ Author: @S2OUnicus, @S2OValor
 */
 
 /*
 *  # Z-Index 表
-*
-*    Z-Index レイヤー名 (ID)    用途
+*  ‾‾‾‾‾‾‾‾‾‾‾‾
+*    Z-Index レイヤー名 (ID)  用途
 *  -------------------------------------------
-*    10      yl-ly-1          （保留）
-*    20      ［yl-ly-ground］  バックグラウンド用
-*    30      yl-ly-3          （保留）
-*    40      yl-ly-4          （保留）
-*    50      yl-ly-5          （保留）
-*    60      ［yl-ly-stage］   ステージパーツ用
-*    70      ［yl-ly-cover］   ステージに浮かぶもの
-*    80      yl-ly-8          （保留）
-*    90      yl-ly-9          （保留）
+*    10      yl-ly-1        （保留）
+*    20     ［yl-ly-ground］ バックグラウンド用
+*    30      yl-ly-3        （保留）
+*    40      yl-ly-4        （保留）
+*    50      yl-ly-5        （保留）
+*    60     ［yl-ly-stage］  ステージパーツ用
+*    70     ［yl-ly-cover］  ステージに浮かぶもの
+*    80      yl-ly-8        （保留）
+*    90      yl-ly-9        （保留）
 *  -------------------------------------------
-*
 */
 
-#yl-ly-ground, #yl-ly-stage, #yl-ly-cover {
-    position: absolute;
-    width: 100%;
-    min-height: 100%
-}
-
-#yl-ly-ground {
-    z-index: 20;
-
-    background-color: #9fcff7;
-}
-
-#yl-ly-stage {
-    z-index: 60;
-
-    background-color: bisque;
-}
-
-#yl-ly-cover {
-    z-index: 70;
-
-    background-color: chocolate;
-    display: none;
-}
 
 /*
 *  # 目次
-*
+*  ‾‾‾‾‾‾
+*  -------------------------------------------
 *  - :root                 属性変数
-*  - *                     全体タグ
+*  - *                     全称セレクター
 *
 *  - html, body            ページ本体
-*  - a, div, scrollbar ..  一般タグ
+*  - a, div, scrollbar ..  基本タグ
 *
 *  - .uk-*                 Uikit 仕様再設定
 *  - .no-select ..         通用仕様クラス
 *
 *  - #yl-layers            レイヤー容器
+*  - #yl-ly-*              レイヤー本体
 *
 *
 *  - aside                 モダル部分
 *
-*  - @media scr and (o:p)  モバイルでの仕様
+*  - @media scn and (o:p)  モバイル仕様
+*  --------------------------------------------
 */
 
 
 /*
-*  属性変数
-*  @ 通用色など変数
+*  ## 属性変数
+*  ‾‾‾‾‾‾‾‾‾‾‾
+*  > 全称セレクター
 *
-*  # セレクター
+*  @ セレクター
 *    - :root
+*  --------------------------------------------
 */
 
 :root {
@@ -86,11 +65,13 @@
 
 
 /*
-*  全体タグ
-*  @ 全体適用仕様
+*  ## 全称セレクター
+*  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+*  > 全体適用仕様
 *
-*  # セレクター
+*  @ セレクター
 *    - *
+*  --------------------------------------------
 */
 
 * {
@@ -109,11 +90,13 @@
 
 
 /*
-*  ページ本体
-*  @ ページ全体（容器）に適用
+*  ## ページ本体
+*  ‾‾‾‾‾‾‾‾‾‾‾‾
+*  > ページ本体のスタイル
 *
-*  # セレクター
+*  @ セレクター
 *    - html, body
+*  --------------------------------------------
 */
 
 html, body {
@@ -122,37 +105,40 @@ html, body {
     overflow: hidden;
 
     color: #5F5039;
+    background-color: #faebd7;
 }
 
 
 /*
-*  一般タグ
-*  @ 通用的内容や機能タグ
+*  ## 基本タグ
+*  ‾‾‾‾‾‾‾‾‾‾
+*  > HTML 基本タグ
 *
-*  # セレクター
+*  @ セレクター
 *    - a
 *    - div
 *    - ::-webkit-scrollbar*
+*  --------------------------------------------
 */
+
+/* ===== 基本タグ ===== */
 
 /* リンク */
 a {
-    color: #999!important;
+    color: #5d3b23!important;
 }
 
 a:hover {
-    color: #999!important;
+    color: #5d3b23!important;
 }
 
 /* 一般容器 */
 div {
-    /* 寸法確認ため、DIV全部 border-box 化 */
     box-sizing: border-box!important;
     overflow: hidden;
 }
 
-/* ===== スクロールバー ===== */
-
+/* スクロールバー */
 ::-webkit-scrollbar {
 	height: 4px;
 	width: 4px
@@ -182,47 +168,16 @@ div {
 
 
 /*
-*  Uikit 仕様再設定
-*  @ Uikit の仕様を上書き設定
+*  ## Uikit 仕様再設定
+*  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+*  > Uikit 仕様の上書き設定
 *
-*  # セレクター
+*  @ セレクター
 *    - .uk-*
+*  --------------------------------------------
 */
 
-/* ===  目次インデックス  === */
-
-/* Breadcrumb 目次ガイド */
-.uk-breadcrumb {
-    padding: .3rem 1.3rem;
-
-    background-color: rgba(0, 0, 0, .05) !important;
-}
-
-/* Breadcrumb 目次ガイド：内容要素 */
-.uk-breadcrumb > * > * {
-    color: #333!important;
-}
-
-/* Breadcrumb 目次ガイド：分割記号 */
-.uk-breadcrumb>:nth-child(n+2):not(.uk-first-column)::before {
-    color: #222!important;
-    margin: 0 10px!important;
-}
-
-/* Breadcrumb 目次ガイド：今のページを強調 */
-#pagePath > li:last-child > a {
-    font-weight: bold!important;
-}
-
-/* ===  文章正文  === */
-
-/* 分割線 */
-.uk-hr, hr {
-    border-top: 1px solid #111!important;
-}
-
-
-/* === モダル === */
+/* モダル */
 .uk-modal-dialog {
     border-radius: .8rem;
 }
@@ -235,17 +190,20 @@ div {
     box-shadow: 0 -.4rem 1rem .2rem rgba(0, 0, 0, .06);
 }
 
-/* === ボタン === */
+/* ボタン */
 .uk-button {
     border-radius: .4rem;
 }
 
+
 /*
-*  通用仕様クラス
-*  @ クラス化した専用仕様
+*  ## 通用仕様クラス
+*  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+*  > クラス化専用仕様
 *
-*  # セレクター
+*  @ セレクター
 *    - .no-select
+*  --------------------------------------------
 */
 
 /* 選択禁止クラス */
@@ -260,39 +218,78 @@ div {
 
 
 /*
-*  レイヤー容器
+*  ## レイヤー容器
+*  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+*  > レイヤーたちの容器
 *
-*  # セレクター
+*  @ セレクター
 *    - #yl-layers
+*  --------------------------------------------
 */
 
 #yl-layers {
+    position: absolute;
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
 
 /*
-*  モダル部分
-*  @ サブウインドウみたいポップアップ文字アリアの詳細
+*  ## レイヤー本体
+*  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+*  > Z-Index で区別したレイヤーたち
 *
-*  # セレクター
+*  @ セレクター
+*    - #yl-ly-*
+*  --------------------------------------------
+*/
+
+#yl-ly-ground, #yl-ly-stage, #yl-ly-cover {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+}
+
+#yl-ly-ground {
+    z-index: 20;
+}
+
+#yl-ly-stage {
+    z-index: 60;
+}
+
+#yl-ly-cover {
+    z-index: 70;
+
+    display: none;
+}
+
+
+/*
+*  ## モダル部分
+*  ‾‾‾‾‾‾‾‾‾‾‾‾
+*  > ポップアップレイヤー
+*
+*  @ セレクター
 *    - aside
+*  --------------------------------------------
 */
 
 aside {
 }
 
+
 /*
-*  モバイルでの仕様
-*  @ スマホなど広さは高さより大きいデバイスでの仕様
+*  ## モバイル仕様
+*  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+*  > スマホなど 広さ＞高さ の仕様
 *
-*  # セレクター
-*  - @media screen and (orientation: portrait) {}
+*  @ セレクター
+*  - @media scn and (o:p) {}
+*  --------------------------------------------
 */
 
 @media screen and (orientation: portrait) {
-    /* 保留 */
 }

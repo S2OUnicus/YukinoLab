@@ -11,7 +11,7 @@ error_reporting(E_ALL);
 <head>
     <?php require_once('page/_shared/meta.php'); ?>
 
-	<title>Yukino Lab 公式</title>
+	<title>YUKINO Lab 公式</title>
 
     <?php require_once('page/_shared/link.php'); ?>
 
@@ -37,26 +37,29 @@ error_reporting(E_ALL);
         -->
         <div id="yl-ly-stage" class="uk-flex uk-flex-column uk-flex-middle">
             <!-- Stage Header -->
-            <header class="uk-flex uk-flex-middle uk-flex-center">
+            <header class="uk-flex uk-flex-middle uk-flex-center no-select">
                 <?php require_once('page/parts/stage/header.php'); ?>
             </header>
 
             <!-- Stage Navigation -->
-            <nav class="uk-flex uk-flex-middle uk-flex-center" hx-swap-oob="true">
+            <nav class="uk-flex uk-flex-middle no-select">
                 <?php require_once('page/parts/stage/nav.php'); ?>
             </nav>
 
             <!--
             (!! Important !!) Stage Main: [Index]
             -->
-            <main class="uk-flex uk-flex-column uk-flex-center">
+            <main id="htmx-main" class="uk-flex uk-flex-column uk-flex-middle">
                 <?php require_once('page/parts/stage/index_inner.php'); ?>
             </main>
 
             <!-- Stage Footer -->
-            <footer class="uk-flex uk-flex-column uk-flex-middle uk-flex-center">
+            <footer class="uk-flex uk-flex-column uk-flex-middle uk-flex-center no-select">
                 <?php require_once('page/parts/stage/footer.php'); ?>
             </footer>
+
+            <!-- Stage Aside: Modal -->
+            <aside id="htmx-aside" hx-swap-oob="true"></aside>
         </div>
 
         <!-- yl-ly-cover ステージに浮かぶもの -->

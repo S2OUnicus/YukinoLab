@@ -1,12 +1,28 @@
 @charset "utf-8";
 
+/*
+*  ## 全体タグ
+*  ‾‾‾‾‾‾‾‾‾‾
+*  > 全体適用仕様
+*
+*  @ セレクター
+*    - header
+*    - nav
+*    - main
+*    - footer
+*  --------------------------------------------
+*/
+
 header, nav, main, footer {
     width: 100%;
 }
 
+header, footer {
+    background-color: #DEFCE8;
+}
+
 header {
     height: 2.4rem;
-    background-color: #DEFCE8;
 
     font-size: 1.1rem;
 }
@@ -17,9 +33,259 @@ nav {
 }
 
 main {
+    min-height: 100vh;
 
+    padding: 1rem;
 }
 
 footer {
-
+    padding: .6rem 0;
+    font-size: .9rem;
 }
+
+footer span:nth-child(2) {
+    font-size: .8rem;
+    color: #888;
+    margin-top: .1rem;
+}
+
+
+/*
+*  ## ブランド
+*  ‾‾‾‾‾‾‾‾‾‾
+*  > ロゴ・サイト名部分
+*
+*  @ セレクター
+*    - #yl-st-brand
+*    - #yl-st-brand > *
+*  --------------------------------------------
+*/
+
+#yl-st-brand {
+    position: absolute;
+    left: 3rem;
+}
+
+/* ===== サイトロゴ ===== */
+
+#yl-st-logo {
+    margin-right: 1.5rem;
+}
+
+#yl-st-logo img {
+    /* 高さは nav の 85% に */
+    height: calc(5.3rem * .85);
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+}
+
+/* ===== サイト名 ===== */
+
+#yl-st-name a {
+    font-size: 2rem;
+    font-weight: bold;
+    white-space: nowrap;
+    color: #5d3b23!important;
+}
+
+#yl-st-name a:hover {
+    text-decoration: none;
+}
+
+@media screen and (orientation: portrait) {
+    #yl-st-logo img {
+        height: calc(5.3rem * .8);
+    }
+
+    #yl-st-brand {
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: 100%;
+        justify-content: center;
+    }
+
+    #yl-st-name a {
+        font-size: 1.8rem;
+    }
+}
+
+
+/*
+*  ## PC メニュー
+*  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+*  > 横置きスクリーンのメニュー
+*
+*  @ セレクター
+*    - #yl-pcmenu
+*    - #yl-pcmenu > *
+*  --------------------------------------------
+*/
+
+#yl-pcmenu {
+    position: absolute;
+    right: 3rem;
+}
+
+#yl-pcmenu a {
+    margin-right: 2.4rem;
+    font-size: 1.4rem;
+    color: #5d3b23!important;
+    text-transform: uppercase;
+}
+
+#yl-pcmenu a:last-child {
+    margin: 0;
+}
+
+
+/*
+*  ## モバイルメニュー
+*  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+*  > 縦置きスクリーンのメニュー
+*
+*  @ セレクター
+*  - @media scn and (o:p) {}
+*    - #yl-mbmenu
+*    - #yl-mbmenu > *
+*  --------------------------------------------
+*/
+
+@media screen and (max-width: 1050px) {
+    #yl-pcmenu a {
+        margin-right: 1.25rem;
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    #yl-pcmenu {
+        display: none;
+    }
+}
+
+
+/*
+*  ## モバイルメニューボタン
+*  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+*  > モバイルメニュー呼び出しボタン
+*
+*  @ セレクター
+*    - #yl-st-mbmenu-btn
+*    - @media scn and (o:p) {}
+*      - #yl-st-mbmenu-btn
+*      - #yl-st-mbmenu-btn > *
+*  --------------------------------------------
+*/
+
+#yl-st-mbmenu-btn {
+    display: none;
+}
+
+@media screen and (orientation: portrait) {
+    #yl-st-mbmenu-btn {
+        position: absolute;
+        left: 3rem;
+
+        display: flex;
+        height: 3rem;
+        width: 3rem;
+
+        padding: 0;
+        border: 1px solid #aaa;
+        color: #aaa;
+
+        font-size: 1.4rem;
+    }
+
+    #yl-st-mbmenu-btn:hover {
+        border: 1px solid #888;
+        color: #888;
+    }
+}
+
+
+/*
+*  ## モバイルメニュー
+*  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+*  > モバイルメニュー本体
+*
+*  @ セレクター
+*    - @media scn and (o:p) {}
+*      - #yl-st-mbmenu
+*      - #yl-st-mbmenu > *
+*  --------------------------------------------
+*/
+
+@media screen and (orientation: portrait) {
+    /* スライドメニュー本体 */
+    #yl-st-mbmenu > div {
+        background-color: #d8be97;
+    }
+
+    /* タイトル */
+    #yl-st-mbmenu span {
+        font-size: 1.6rem;
+        color: #5d3b23;
+    }
+
+    /* 分割線 */
+    #yl-st-mbmenu hr {
+        border: #5d3b23 1px dashed;
+    }
+
+    /* メニュー項目 */
+    #yl-st-mbm-cnt a {
+        height: 2rem;
+        margin-bottom: .8rem;
+        padding: .2rem .8rem;
+
+        color: #5d3b23;
+
+        border-radius: 1rem;
+    }
+
+    #yl-st-mbm-cnt a:hover {
+        background-color: rgba(0,0,0,.2);
+        color: transparent!important;
+        text-decoration: none;
+    }
+
+    #yl-st-mbm-cnt a,
+    #yl-st-mbm-cnt a:hover::before {
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    #yl-st-mbm-cnt a:hover::before {
+        color: #5d3b23!important;
+    }
+
+    /* メニュー共通設定 */
+    #yl-st-mbm-cnt a:hover:nth-child(1)::before {
+        content: "ホーム";
+    }
+
+    #yl-st-mbm-cnt a:hover:nth-child(2)::before {
+        content: "作品集";
+    }
+
+    #yl-st-mbm-cnt a:hover:nth-child(3)::before {
+        content: "スケジュール";
+    }
+
+    #yl-st-mbm-cnt a:hover:nth-child(4)::before {
+        content: "質問・解答";
+    }
+
+    #yl-st-mbm-cnt a:hover:nth-child(5)::before {
+        content: "個人相関";
+    }
+
+    #yl-st-mbm-cnt a:hover:nth-child(6)::before {
+        content: "お問い合わせ";
+    }
+}
+
