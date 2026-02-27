@@ -1,0 +1,283 @@
+@charset "utf-8";
+
+/*
+*    # Yukino Lab Pure Review Styles
+*
+*    @ Author: @S2OUnicus, @S2OValor
+*
+*/
+
+/*
+*  # Z-Index 表
+*
+*    Z-Index レイヤー名 (ID)    用途
+*  -------------------------------------------
+*    10      yl-ly-1          （保留）
+*    20      ［yl-ly-ground］  バックグラウンド用
+*    30      yl-ly-3          （保留）
+*    40      yl-ly-4          （保留）
+*    50      yl-ly-5          （保留）
+*    60      ［yl-ly-stage］   ステージパーツ用
+*    70      ［yl-ly-cover］   ステージに浮かぶもの
+*    80      yl-ly-8          （保留）
+*    90      yl-ly-9          （保留）
+*  -------------------------------------------
+*
+*/
+
+#yl-ly-ground, #yl-ly-stage, #yl-ly-cover {
+    position: absolute;
+    width: 100%;
+    min-height: 100%
+}
+
+#yl-ly-ground {z-index: 20}
+#yl-ly-stage {z-index: 60}
+#yl-ly-cover {z-index: 70}
+
+/*
+*  # 目次
+*
+*  - :root                 属性変数
+*  - *                     全体タグ
+*
+*  - html, body            ページ本体
+*  - a, div, scrollbar ..  一般タグ
+*
+*  - .uk-*                 Uikit 仕様再設定
+*  - .no-select ..         通用仕様クラス
+*
+*  - #yl-layers            レイヤー容器
+*
+*
+*  - aside                 モダル部分
+*
+*  - @media scr and (o:p)  モバイルでの仕様
+*/
+
+
+/*
+*  属性変数
+*  @ 通用色など変数
+*
+*  # セレクター
+*    - :root
+*/
+
+:root {
+    --scrollbar-track-bg: rgba(0, 0, 0, 0.01);
+    --scrollbar-thumb-bg: rgba(0, 0, 0, 0.01);
+}
+
+
+/*
+*  全体タグ
+*  @ 全体適用仕様
+*
+*  # セレクター
+*    - *
+*/
+
+* {
+    /* 初期フォント：Zen Maru Gothic */
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    /* 文字をはっきりと書くように */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    box-sizing: border-box!important;
+}
+
+
+/*
+*  ページ本体
+*  @ ページ全体（容器）に適用
+*
+*  # セレクター
+*    - html, body
+*/
+
+html, body {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
+/*
+*  一般タグ
+*  @ 通用的内容や機能タグ
+*
+*  # セレクター
+*    - a
+*    - div
+*    - ::-webkit-scrollbar*
+*/
+
+/* リンク */
+a {
+    color: #999!important;
+}
+
+a:hover {
+    color: #999!important;
+}
+
+/* 一般容器 */
+div {
+    /* 寸法確認ため、DIV全部 border-box 化 */
+    box-sizing: border-box!important;
+    overflow: hidden;
+}
+
+/* ===== スクロールバー ===== */
+
+::-webkit-scrollbar {
+	height: 4px;
+	width: 4px
+}
+
+::-webkit-scrollbar-track {
+	background: var(--scrollbar-track-bg);
+	border-radius: 2px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.08);
+	box-shadow: inset 0 0 5px rgba(0,0,0,.08)
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--scrollbar-thumb-bg);
+	border-radius: 2px;
+	-webkit-box-shadow: inset 0 0 10px rgba(0,0,0,.2);
+	box-shadow: inset 0 0 10px rgba(0,0,0,.2)
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #9fcff7
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--scrollbar-thumb-bg);
+}
+
+
+/*
+*  Uikit 仕様再設定
+*  @ Uikit の仕様を上書き設定
+*
+*  # セレクター
+*    - .uk-*
+*/
+
+/* ===  目次インデックス  === */
+
+/* Breadcrumb 目次ガイド */
+.uk-breadcrumb {
+    padding: .3rem 1.3rem;
+
+    background-color: rgba(0, 0, 0, .05) !important;
+}
+
+/* Breadcrumb 目次ガイド：内容要素 */
+.uk-breadcrumb > * > * {
+    color: #333!important;
+}
+
+/* Breadcrumb 目次ガイド：分割記号 */
+.uk-breadcrumb>:nth-child(n+2):not(.uk-first-column)::before {
+    color: #222!important;
+    margin: 0 10px!important;
+}
+
+/* Breadcrumb 目次ガイド：今のページを強調 */
+#pagePath > li:last-child > a {
+    font-weight: bold!important;
+}
+
+/* ===  文章正文  === */
+
+/* 分割線 */
+.uk-hr, hr {
+    border-top: 1px solid #111!important;
+}
+
+
+/* === モダル === */
+.uk-modal-dialog {
+    border-radius: .8rem;
+}
+
+.uk-modal-header {
+    box-shadow: 0 .4rem 1rem .2rem rgba(0, 0, 0, .06);
+}
+
+.uk-modal-footer {
+    box-shadow: 0 -.4rem 1rem .2rem rgba(0, 0, 0, .06);
+}
+
+/* === ボタン === */
+.uk-button {
+    border-radius: .4rem;
+}
+
+/*
+*  通用仕様クラス
+*  @ クラス化した専用仕様
+*
+*  # セレクター
+*    - .no-select
+*/
+
+/* 選択禁止クラス */
+.no-select {
+    -moz-user-select: none;
+    -o-user-select:none;
+    -khtml-user-select:none;
+    -webkit-user-select:none;
+    -ms-user-select:none;
+    user-select:none!important;
+}
+
+
+/*
+*  レイヤー容器
+*
+*  # セレクター
+*    - #yl-layers
+*/
+
+#yl-layers {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+
+/*
+*  モダル部分
+*  @ サブウインドウみたいポップアップ文字アリアの詳細
+*
+*  # セレクター
+*    - aside
+*/
+
+aside {
+}
+
+/*
+*  モバイルでの仕様
+*  @ スマホなど広さは高さより大きいデバイスでの仕様
+*
+*  # セレクター
+*  - @media screen and (orientation: portrait) {}
+*/
+
+@media screen and (orientation: portrait) {
+    /* 保留 */
+}
