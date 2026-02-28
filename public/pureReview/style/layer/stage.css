@@ -185,17 +185,19 @@ footer span:nth-child(2) {
 @media screen and (orientation: portrait) {
     #yl-st-mbmenu-btn {
         position: absolute;
-        left: 3rem;
+        left: 1.25rem;
 
         display: flex;
-        height: 3rem;
-        width: 3rem;
+        height: 2.4rem;
+        width: 2.4rem;
 
         padding: 0;
-        border: 1px solid #aaa;
-        color: #aaa;
 
         font-size: 1.4rem;
+        color: #bbb;
+
+        border: 1px solid #bbb;
+        border-radius: .8rem;
     }
 
     #yl-st-mbmenu-btn:hover {
@@ -252,6 +254,7 @@ footer span:nth-child(2) {
     }
 
     #yl-st-mbm-cnt a,
+    /* 選択した項目 */
     #yl-st-mbm-cnt a:hover::before {
         font-size: 1.1rem;
         font-weight: bold;
@@ -263,7 +266,7 @@ footer span:nth-child(2) {
         color: #5d3b23!important;
     }
 
-    /* メニュー共通設定 */
+    /* 選択した項目の文字置き換え */
     #yl-st-mbm-cnt a:hover:nth-child(1)::before {
         content: "ホーム";
     }
