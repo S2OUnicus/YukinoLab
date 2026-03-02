@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+.carousel {
+    width: 100%;
+}
+
+/* スライド内画像 */
+.splide__slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ナビ */
+.carousel-nav {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center; /* 真ん中揃え */
+    gap: 0.5rem;
+}
+
+.carousel-nav button {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.carousel-nav img {
+    height: 1.6rem; /* 指定どおり */
+    width: auto; /* 比率維持 */
+    display: block;
+}
+
+/* 画像が壊れた場合に備えた見た目（任意） */
+.is-broken {
+    opacity: 0.35;
+    filter: grayscale(1);
+}
