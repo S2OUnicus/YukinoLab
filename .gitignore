@@ -2,7 +2,7 @@
 composer.lock
 
 # KumbiaPHP
-config
+/default/app/config
 default/app/temp
 default/public/temp
 
