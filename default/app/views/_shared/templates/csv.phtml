@@ -1,0 +1,15 @@
+<?php
+/* フォーマットするデータ */
+$data = (array) $data;
+
+if (isset($filename)) {
+    header("Content-Disposition: attachment; filename=\"$filename.csv\"");
+}
+/* コンテンツの MIME タイプを設定 */
+header("Content-type: text/csv");
+/* 出力バッファを開く */
+$buffer = fopen('php://output', 'w');
+foreach ($data as $line) {
+    fputcsv($buffer, is_object($line) ? get_object_vars($line) : $line, $delimiter ?? ',');
+}
+fclose($buffer);

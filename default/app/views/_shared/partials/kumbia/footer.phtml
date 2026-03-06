@@ -1,0 +1,20 @@
+<?php
+$config = Config::read('config');
+?>
+<span>
+    <?= '実行時間: ', round((microtime(1) - $_SERVER['REQUEST_TIME_FLOAT']) * 1000, 4), ' ms / メモリ使用量: ', number_format(memory_get_usage() / 1048576, 3), ' MB'; ?>
+</span>
+
+<span>
+    アプリケーション: <strong><?= basename(dirname(APP_PATH)) ?></strong>
+    (<?= PRODUCTION ? '本番' : '開発' ?>)
+    ｜OriginVer: <?= KUMBIA_VERSION ?>
+    ｜PureVer: <?= $config['application']['pureVer']; ?> <?= date('ymd'); ?>
+</span>
+
+<span>
+    <a href="/" hx-get="/" hx-target="#mainText" hx-select="#mainText" hx-select-oob="#pageBreadcrumb" hx-swap="innerHTML" hx-push-url="true">
+        © <?= date('Y'); ?> <?= $config['application']['name']; ?>
+    </a>
+</span>
+

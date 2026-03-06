@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         backupGlobals="false"
+         colors="true"
+         verbose="true"
+         bootstrap="./tests/bootstrap.php">
+
+    <!-- PHP の設定値をテスト実行時に上書き -->
+    <php>
+        <!-- すべてのエラーを報告 -->
+        <ini name="error_reporting" value="-1"/>
+        <!-- メモリ上限を無制限に -->
+        <ini name="memory_limit" value="-1"/>
+        <!-- CLI で APC を有効化 -->
+        <ini name="apc.enable_cli" value="1"/>
+        <!-- CLI で OPcache を有効化 -->
+        <ini name="opcache.enable_cli" value="1"/>
+    </php>
+
+    <testsuites>
+        <!-- KumbiaPHP フレームワークのコア機能に対するテストスイート -->
+        <testsuite name="KumbiaPHP フレームワーク コアテストスイート">
+            <directory>./tests/</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- Mockery 用 PHPUnit リスナー -->
+    <listeners>
+        <listener class="\Mockery\Adapter\Phpunit\TestListener"></listener>
+    </listeners>
+
+    <!-- コードカバレッジレポートから tests / vendor を除外 -->
+    <coverage>
+        <exclude>
+            <directory suffix=".php">./tests</directory>
+            <directory suffix=".php">../../vendor</directory>
+        </exclude>
+    </coverage>
+</phpunit>

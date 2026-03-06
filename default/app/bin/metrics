@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+PATH=./vendor/bin:../../vendor/bin:~/.config/composer/vendor/bin:~/.composer/vendor/bin:$PATH
+phpmetrics --report-html="./temp/metrics" --exclude="tests,temp" . 
+
+echo
+echo "Ctrl+クリックで開いてください:"
+echo "file://$PWD/temp/metrics/index.html"
+echo
+# ブラウザを直接開きたい場合の例:
+# xdg-open "file://$PWD/temp/metrics/index.html"
+# Mac の場合:
+# open "file://$PWD/temp/metrics/index.html"
+
+# 事前準備: Composer で phpmetrics をグローバルインストール
+# composer global require 'phpmetrics/phpmetrics'

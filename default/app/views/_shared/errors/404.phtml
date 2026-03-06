@@ -1,0 +1,61 @@
+<?php
+/*
+* 基本設定
+*/
+
+// 設定集を導入
+$config = Config::read('config');
+
+/*
+* その他
+*/
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset=<?= APP_CHARSET ?>>
+    <title>エラー 404 ページ見つかれない - <?= $config['application']['name'] ?></title>
+    <meta name=robots content=noindex>
+    <meta name=generator content="KumbiaPHP Framework">
+    <style>
+        body{font-family:arial, sans-serif;
+        text-align: center;
+        background:#EEE}
+        img {
+        border: 0;
+        max-width: 100%;
+        height: auto;
+        }
+        .logo{padding:0}
+        #error-404{padding-top:2%}
+        p{font-size:xx-large;}
+        h1 {
+            color: #FE4747;
+            font-size: 112px;
+            line-height: 0;
+            font-family:"arial black", sans-serif;
+        }
+        .logo{background:transparent}
+        .logo:hover{border:none}
+        a{color:#fff;
+        background:#00A1CB;
+        padding:.5em 2em;
+        border-radius:2em;
+        margin-top:1em;
+        font-size:large;
+        font-weight: bold;
+        text-decoration:none}
+        a:hover{background:#eee;
+        border:2px solid #00A1CB;
+        color:#00A1CB;}
+    </style>
+</head>
+<body>
+    <div id="error-404">
+        <a class="logo" href="<?= PUBLIC_PATH ?>" title="<?= $config['application']['name'] ?>"><img src="<?= PUBLIC_PATH ?>favicon.ico" alt="<?= $config['application']['name'] ?>"/></a>
+        <h1>404</h1>
+        <p>おっと！ このページは存在しません。</p>
+        <p><a href="<?= PUBLIC_PATH ?>">トップページへ戻る</a></p>
+    </div>
+</body>
+</html>

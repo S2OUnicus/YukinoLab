@@ -1,0 +1,92 @@
+<?php
+/*
+* 基本設定
+*/
+
+// 設定集を導入
+$config = Config::read('config');
+
+/*
+* URL相関
+*/
+
+// 現在のコントローラ名 (例: 'controller')
+// $controller = Router::get('controller');
+// Controller または Module/Controller
+$controller = Router::get('controller_path');
+
+// 現在のアクション名 (例: 'action')
+$action = Router::get('action');
+
+// パラメータ (配列。例: ['Param1', 'Param2'])
+$params = Router::get('parameters');
+$paramsEach = !empty($params) ? implode(', ', $params) : '';
+
+// 個別に取り出す
+// $param1 = isset($params[0]) ? $params[0] : null;
+// $param2 = isset($params[1]) ? $params[1] : null;
+// $param3 = isset($params[2]) ? $params[2] : null;
+
+// メイン方法判断
+$controllerLabel = (ltrim($controller, '/') === 'index') ? '' : $controller;
+$actionLabel     = ($action === 'index') ? '' : $action;
+
+// /Controller
+$urlController = PUBLIC_PATH . $controller;
+
+// /Controller/Action
+$urlAction = PUBLIC_PATH . $controller . '/' . $action;
+
+// /Controller/Action/Param1/Param2
+$urlFull = PUBLIC_PATH
+    . (!empty($controllerLabel) ? $controller : '')
+    . (!empty($actionLabel)     ? '/' . $action : '')
+    . (!empty($params)          ? '/' . implode('/', $params) : '');
+
+// ［初め部分］サイト名 からアウトプット開始
+?>
+
+<li>
+    <a href="/" hx-get="/" hx-target="#mainText" hx-select="#mainText" hx-select-oob="#pageBreadcrumb" hx-swap="innerHTML" hx-push-url="true">
+        <?php echo $config['application']['name']; ?>
+    </a>
+</li>
+
+<?php
+// コントローラーのインデックス判断
+$ctrlerTag = '<li id="bcCtrler"><a href="'
+. ((!empty($controllerLabel)) ? $urlController : '/index')
+. '" hx-get="'
+. ((!empty($controllerLabel)) ? $urlController : '/index')
+. '" '
+. 'hx-target="#mainText" '
+. 'hx-select="#mainText" '
+. 'hx-select-oob="#pageBreadcrumb"'
+. 'hx-swap="innerHTML" '
+. 'hx-push-url="true"'  // URL も変わったら履歴を残したい場合
+. '>'
+. ((!empty($controllerLabel)) ? $controller : 'インデックス')
+. '</a></li>';
+
+// アクションのインデックス判断
+$actionTag = '<li id="bcAction"><a href="'
+. ((!empty($actionLabel)) ? $urlFull : '')
+. '" hx-get="'
+. ((!empty($actionLabel)) ? $urlFull : '')
+. '" '
+. 'hx-target="#mainText" '
+. 'hx-select="#mainText" '
+. 'hx-select-oob="#pageBreadcrumb"'
+. 'hx-swap="innerHTML" '
+. 'hx-push-url="true"'  // URL も変わったら履歴を残したい場合
+. '>'
+. ((!empty($actionLabel)) ? $actionLabel : '')
+. '</a></li>';
+
+// ［あとの部分］コントローラー・メソッドなどタグを挿入
+echo ($ctrlerTag . (!empty($actionLabel) ? $actionTag : ''));
+
+// 以下は普通にいらない
+// echo '<li><a href="/">${param1}</a></li>'
+// echo '<li><a href="/">${param2}</a></li>'
+?>

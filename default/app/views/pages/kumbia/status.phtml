@@ -1,0 +1,57 @@
+<div id='info'>
+<?php
+    echo date('G:i:s Y-m-d', time());
+
+    /**
+     * temp/ ディレクトリのパーミッション確認
+     */
+    if (!is_writable(APP_PATH.'temp')) {
+        $tmp = "次のディレクトリに書き込み権限を与えてください: '".basename(APP_PATH)."/temp/'";
+    } else {
+        $tmp = 'temp ディレクトリ... OK';
+    }
+
+    $status = PRODUCTION ? 'Production' : 'Development';
+
+    /**
+     * config.php の設定
+     */
+    $config = Config::read('config');
+
+    $cahe_driver = $config['application']['cache_driver'] ?? 'キャッシュ用のドライバが選択されていません';
+
+    $locale = str_replace(';', '<br>', setlocale(LC_ALL, '0'));
+
+    if (! $timezone = date_default_timezone_get()) {
+        $timezone = 'タイムゾーンが指定されていません。';
+    }
+?>
+        <h2>config.php <span class='app'>（アプリケーション『<?= basename(dirname(APP_PATH)) ?>』）</span></h2>
+
+        <div id="conf">
+        <h4>temp/ ディレクトリ:</h4>
+        <p><?= $tmp ?></p>
+
+        <h4>フレームワークの現在の状態: <span><?= $status ?></span></h4>
+        <p>詳しくは <a href='https://github.com/KumbiaPHP/Documentation/blob/master/es/to-install.md#modos-de-una-aplicaci%C3%B3n'>実行モード</a> を参照してください。</p>
+
+        <h4>データベース: <span><?= $config['application']['database'] ?></span></h4>
+        <p>使用されるデータベース接続名です。設定は <a href="https://github.com/KumbiaPHP/Documentation/blob/master/es/active-record.md#configurando-conexi%C3%B3n-a-la-base-de-datos">databases.php</a> を参照してください。</p>
+
+        <h4>キャッシュドライバ: <span><?= $cahe_driver ?></span></h4>
+        <p>キャッシュ処理に利用されるドライバです。</p>
+
+        <h4>文字コード: <span><?= APP_CHARSET ?></span></h4>
+        <p>文字エンコーディングです。UTF-8 を推奨します。</p>
+
+        <h2>サーバーの設定値</h2>
+        <p>これらの値の変更方法: <a href=#>リンク（TODO）</a></p>
+
+        <h4>タイムゾーン: <span><?= $timezone ?></span></h4>
+        <p>アプリケーションで使用するタイムゾーンです。</p>
+
+        <h4>ロケール:</h4>
+        <span><?= $locale ?></span>
+        <p>ローカライズ設定です。サーバーにインストールされているロケールに依存します。</p>
+        </div>
+</div>

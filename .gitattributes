@@ -1,0 +1,20 @@
+# テキストファイルを自動検出し、LF 改行に正規化する
+* text=auto
+
+# JSON ファイル（LF 改行を強制）
+*.json text eol=lf
+
+# Visual Studio 用のカスタム設定（C# 用 diff ドライバ）
+*.cs     diff=csharp
+
+# msysgit 標準の設定（Office / PDF / RTF をプレーンテキストとして diff）
+*.doc	 diff=astextplain
+*.DOC	 diff=astextplain
+*.docx diff=astextplain
+*.DOCX diff=astextplain
+*.dot  diff=astextplain
+*.DOT  diff=astextplain
+*.pdf  diff=astextplain
+*.PDF	 diff=astextplain
+*.rtf	 diff=astextplain
+*.RTF	 diff=astextplain

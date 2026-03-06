@@ -1,0 +1,39 @@
+<?php
+// 例外メッセージにはモデル名が入っている
+$model = $e->getMessage();
+$Model = ucwords($model);
+?>
+
+<div class="flash error">
+    <?php // エラー表示：指定されたモデルが見つからない場合 ?>
+    <h1>モデルが見つかりません</h1>
+    <p>
+        <strong>エラー: </strong>
+        モデル <em><?= $Model ?></em> が見つかりませんでした。<br>
+        正しく動作させるには、次のファイルにクラス <em><?= $Model ?></em> を作成する必要があります：<br>
+        <em><?= APP_PATH ?>models/<?= $model ?>.php</em>
+    </p>
+</div>
+
+<div class="flash valid">
+    <?php // 解決方法の案内 ?>
+    <h1>解決方法</h1>
+    <h4>
+        <strong>
+            下記のクラス <em><?= $Model ?></em> を、次のファイルに作成してください：<br>
+            <em class="file"><?= APP_PATH ?>models/<?= $model ?>.php</em>
+        </strong>
+    </h4>
+
+    <pre>
+<?php
+// モデルクラスの雛形をハイライト表示
+highlight_string("<?php
+class {$Model}
+{
+    // このモデルに関する処理をここに実装してください
+}
+");
+?>
+    </pre>
+</div>

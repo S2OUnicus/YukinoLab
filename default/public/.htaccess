@@ -1,0 +1,23 @@
+# デフォルトのインデックスファイル
+DirectoryIndex index.php
+
+# mod_rewrite が有効な場合のみ適用
+<IfModule mod_rewrite.c>
+    # リライトルールを有効化
+    RewriteEngine On
+
+    # インストールディレクトリ
+    # アプリケーションが public_html 直下にない場合などに必要になることがあります
+    #RewriteBase /
+
+    # 対象パスが既存のファイルまたはディレクトリの場合は書き換えを行わない
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # ファイル／ディレクトリではないリクエストを
+    # index.php/ にリライトする
+    RewriteRule (.*) index.php/$1 [L]
+
+    # こちらは index.php?_url=URL 形式にリライトする例
+    #RewriteRule ^(.*)$ index.php?_url=/$1 [QSA,L]
+</IfModule>
