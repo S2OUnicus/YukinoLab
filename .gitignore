@@ -1,9 +1,9 @@
 # PHP
 composer.lock
-#/vendor
+/vendor
 
 # KumbiaPHP
-#/default/app/config
+/default/app/config
 default/app/temp
 default/public/temp
 
