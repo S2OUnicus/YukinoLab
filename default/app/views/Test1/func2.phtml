@@ -1,0 +1,76 @@
+<?php
+/*
+* 基本設定
+*/
+
+// 設定集を導入
+$config = Config::read('config');
+
+/*
+* URL相関
+*/
+
+// 現在のコントローラ名 (例: 'controller')
+// $controller = Router::get('controller');
+// Controller または Module/Controller
+$controller = Router::get('controller_path');
+
+// 現在のアクション名 (例: 'action')
+$action = Router::get('action');
+
+// パラメータ (配列。例: ['Param1', 'Param2'])
+$params = Router::get('parameters');
+$paramsEach = !empty($params) ? implode(', ', $params) : '';
+
+// 個別に取り出す
+// $param1 = isset($params[0]) ? $params[0] : null;
+// $param2 = isset($params[1]) ? $params[1] : null;
+// $param3 = isset($params[2]) ? $params[2] : null;
+
+// メイン方法判断
+$controllerLabel = (ltrim($controller, '/') === 'index') ? '' : $controller;
+$actionLabel     = ($action === 'index') ? '' : $action;
+
+// /Controller
+$urlController = PUBLIC_PATH . $controller;
+
+// /Controller/Action
+$urlAction = PUBLIC_PATH . $controller . '/' . $action;
+
+// /Controller/Action/Param1/Param2
+$urlFull = PUBLIC_PATH
+    . (!empty($controllerLabel) ? $controller : '')
+    . (!empty($actionLabel)     ? '/' . $action : '')
+    . (!empty($params)          ? '/' . implode('/', $params) : '');
+?>
+<span>
+    <?= $pass1 ?>
+</span>
+
+<span>
+    <?= $pass2 ?>
+</span>
+
+<hr>
+
+<span>$controller = <?= $controller ?></span>
+<span>$action = <?= $action ?></span>
+<span>$params = <?= $params ?></span>
+
+<hr>
+
+<span>$paramsEach = <?= $paramsEach ?></span>
+
+<hr>
+
+<span>$controllerLabel = <?= $controllerLabel ?></span>
+<span>$actionLabel = <?= $actionLabel  ?></span>
+
+<hr>
+
+<span>$urlController = <?= $urlController ?></span>
+<span>$urlAction = <?= $urlAction ?></span>
+
+<hr>
+
+<span>$urlFull = <?= $urlFull ?></span>

@@ -1,0 +1,192 @@
+<?php
+/*
+* 基本設定
+*/
+
+// 設定集を導入
+$config = Config::read('config');
+
+/*
+* その他
+*/
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset=<?= APP_CHARSET ?>>
+	<meta http-equiv="Cache-Control" content="no-siteapp">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<meta name="referrer" content="origin-when-cross-origin">
+	<meta name="robots" content="index,follow">
+	<meta name="page-generated" content="<?php echo date('Y-m-d H:i:s T'); ?>">
+
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="format-detection" content="telephone=no,email=no">
+	<meta name="google" content="notranslate">
+
+	<meta name="theme-color" content="#83CFCE">
+	<meta name="author" content="<?php echo $pgAuthor ?? $config['application']['author']; ?>">
+
+	<title><?php echo $pgTitle ?? $config['application']['name']; ?></title>
+
+    <link rel="icon" href="<?= PUBLIC_PATH ?>favicon.ico">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
+
+    <!--
+    -  外部 CSS レポジトリ
+    -  @ 外部 UI 仕様
+    -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.23.13/css/uikit.min.css" integrity="sha512-giAxX2Dm0fHfTxCGThgfHXfyqC+NAsPAMI39ZDfs70vsKGALMfsNEbxlq6rZxPWWjH685ehdfvTQJkAWEgxOPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!--
+    -  内部 CSS スタイル
+    -  @ このサイトに適用する仕様
+    -->
+
+    <!-- 開発用仕様 -->
+    <link rel="stylesheet" href="<?= PUBLIC_PATH ?>css/base.css?time=<?php echo time(); ?>">
+
+    <!-- 本番ならコメントを解除：基本仕様 -->
+    <?php /* echo Tag::css('base') */ ?>
+    <?= Html::includeCss() ?>
+
+
+    <!--
+    -  特殊 JS レポジトリ
+    -  @ 先にロードしなきゃいけないスクリプト
+    -->
+
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body hx-history-elt>
+    <!-- スクリーン禁止の場合 -->
+    <noscript>This Page Requires Javascript</noscript>
+
+    <div id="stage" class="uk-flex uk-flex-column">
+        <!--
+        -  ヘッダー
+        -  @ 一番上に表すアナウンス部分
+        -
+        -  # 初期値：{display: none;}
+        -  # 参照：(https://www.uikitcss.com/doc/v3/components/alert.html)
+        -->
+        <header class="no-select uk-flex uk-flex-middle uk-alert-success" style="display:none;" uk-alert>
+            グローバルお知らせ
+        </header>
+
+
+        <!--
+        -  ナビゲーション
+        -  @ ページ一番上の横置き部分
+        -->
+        <nav class="no-select uk-flex uk-flex-middle">
+            <?php View::partial('s2oparts/nav') ?>
+        </nav>
+
+
+        <!--
+        -  メイン
+        -  @ ページ真ん中の部分
+        -->
+        <main class="uk-flex uk-flex-column uk-flex-center uk-flex-middle">
+            <!-- 目次インデックス -->
+            <ul id="pagePath" class="no-select uk-breadcrumb uk-flex uk-flex-middle" hx-swap-oob="true">
+                <?php View::partial('s2oparts/breadcrumb') ?>
+            </ul>
+
+            <!-- メインコンテンツ -->
+            <div id="mainContent">
+                <!-- 本文内容のコンテナー -->
+                <div id="mainText" class="uk-flex uk-flex-column">
+                    <?php View::content() ?>
+                </div>
+            </div>
+        </main>
+
+
+        <!--
+        -  フッター
+        -  @ ページ一番下の横置き部分
+        -->
+        <footer class="no-select uk-flex uk-flex-column uk-flex-center uk-flex-middle">
+            <?php View::partial('kumbia/footer') ?>
+        </footer>
+    </div>
+
+
+    <!--
+    -  モダル (Modal)
+    -  @ サブウインドウみたいポップアップ文字アリアの詳細
+    -
+    -  # 参照：(https://www.uikitcss.com/doc/v3/components/modal.html)
+    -->
+    <aside id="modal-overflow" uk-modal>
+        <div class="uk-modal-dialog">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+
+            <div class="uk-modal-header">
+                <h2 class="uk-modal-title">Headline</h2>
+            </div>
+
+            <!-- モダル：正文開始 -->
+            <div class="uk-modal-body" uk-overflow-auto>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+            <!-- モダル：正文終了 -->
+
+            <div class="uk-modal-footer uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+
+                <button class="uk-button uk-button-primary uk-modal-close" type="button">Save</button>
+            </div>
+        </div>
+    </aside>
+
+
+    <!--
+    -  外部 JS レポジトリ
+    -  @ UI、動的機能
+    -->
+
+    <!-- Uikit JS -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.23.13/js/uikit.min.js" integrity="sha512-g9wkFlti+bZT3YNTbVcMumimOS+hJSfbBEnKKP+e307qqQ3Ye4Bx7p/xUJ8yNRMotwudcofKL60ck1BGxk1t6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.23.13/js/uikit-icons.min.js" integrity="sha512-fyzBJExpV4/Aprql1Gm4X0g3Qtmyev/D8KFVkuYYLD4ixhkVwTrSm/3rvYWWKTFtxN0H5/xTBQYxqOgL8CL5Rw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- HTMX -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/htmx/2.0.7/htmx.min.js" integrity="sha512-IisGoumHahmfNIhP4wUV3OhgQZaaDBuD6IG4XlyjT77IUkwreZL3T3afO4xXuDanSalZ57Un+UlAbarQjNZCTQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <!--
+    -  内部 JS スクリプト
+    -  @ このサイトに適用する動的機能
+    -->
+
+    <!-- 開発用仕様 -->
+    <script src="<?= PUBLIC_PATH ?>javascript/base.js?time=<?php echo time(); ?>"></script>
+
+    <!-- 本番ならコメントを解除：基本機能 -->
+    <?php /* echo Tag::js('base'); */ ?>
+</body>
+</html>

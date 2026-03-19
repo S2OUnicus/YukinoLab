@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    colors="true"
+    verbose="true"
+    processIsolation="true"
+    stopOnFailure="false"
+    bootstrap="./tests/bootstrap.php">
+    <php>
+        <ini name="memory_limit" value="-1"/>
+        <ini name="apc.enable_cli" value="1"/>
+    </php>
+
+    <!-- ここに追加で実行したいテストスイートを定義できます -->
+    <testsuites>
+        <testsuite name="app">
+            <directory>./tests</directory>
+        </testsuite>
+        <!-- 必要に応じて、ここにさらにテストスイートを追加してください -->
+    </testsuites>
+
+    <!-- コードカバレッジレポートから vendor, core, tests ディレクトリを除外 -->
+    <coverage>
+        <exclude>
+            <directory suffix=".php">./tests</directory>
+            <directory suffix=".php">../../core</directory>
+            <directory suffix=".php">../../vendor</directory>
+        </exclude>
+    </coverage>
+</phpunit>

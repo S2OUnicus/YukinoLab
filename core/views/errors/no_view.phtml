@@ -1,0 +1,17 @@
+<div class="flash error">
+    <?php // エラー内容（例外メッセージ）をそのまま表示 ?>
+    <h1><?= h($e->getMessage()) ?></h1>
+</div>
+
+<div class="flash valid">
+    <?php // 解決方法の案内 ?>
+    <h1>解決方法</h1>
+    <h4>
+        <strong>
+            次のファイルにビューを作成してください：<br>
+            <em class="file">
+                <?= APP_PATH, 'views/', h(View::getPath()) ?>
+            </em>
+        </strong>
+    </h4>
+</div>

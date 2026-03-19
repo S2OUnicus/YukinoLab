@@ -1,0 +1,73 @@
+<?php
+/**
+ * KumbiaPHP web & app Framework
+ *
+ * LICENSE
+ *
+ * このソースファイルは、同梱の LICENSE ファイルに記載されている
+ * New BSD ライセンスに従います。
+ *
+ * アプリケーション向け「extended」ページネーター
+ *
+ * ページネーターのパラメータ:
+ *   page: ページネーター呼び出しで取得したオブジェクト
+ *   url : ページングを行うアクションのURL。
+ *         デフォルトは "module/controller/page/" で、
+ *         ページ番号をパラメータとして送る。
+ *
+ * @category    Kumbia
+ * @package     Partials
+ * @subpackage  Paginators
+ *
+ * @copyright  Copyright (c) 2005 - 2023 KumbiaPHP Team (http://www.kumbiaphp.com)
+ * @license    https://github.com/KumbiaPHP/KumbiaPHP/blob/master/LICENSE   New BSD License
+ */
+
+// URL が指定されていない場合は Router から取得して組み立てる
+if (!isset($url)) {
+    extract(Router::get());
+    $url = "$controller/page";
+    if ($module) {
+        $url = "$module/$url";
+    }
+}
+
+// 現在ページにおけるアイテムの開始番号と終了番号を計算
+$s_item = $page->per_page * ($page->current - 1) + 1;
+$e_item = $s_item + count($page->items) - 1;
+?>
+
+<div class="paginator">
+    <?php
+    // 前のページへのリンク
+    // ページ1の場合はページ番号なしURLでリンクする
+    if ($page->prev == 1) {
+        echo Html::link(
+            "$url/",
+            '前へ',
+            'title="前のページへ移動" class="nextprev" rel="prev"'
+        );
+    } elseif ($page->prev) {
+        echo Html::link(
+            "$url/$page->prev/",
+            '前へ',
+            'title="前のページへ移動" class="nextprev" rel="prev"'
+        );
+    }
+    ?>
+
+    ページ <?= $page->current ?> / <?= $page->total ?>
+    |
+    アイテム <?= $s_item ?>–<?= $e_item ?>
+
+    <?php
+    // 次のページへのリンク
+    if ($page->next) {
+        echo Html::link(
+            "$url/$page->next/",
+            '次へ',
+            'title="次のページへ移動" class="nextprev" rel="next"'
+        );
+    }
+    ?>
+</div>

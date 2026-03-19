@@ -1,0 +1,88 @@
+<div class="flash error">
+    <?php // エラー表示：アクションに渡されたパラメータ数が正しくない場合 ?>
+    <h1>パラメータ数が正しくありません</h1>
+    <p>
+        <strong>エラー: </strong>
+        コントローラー <strong><?= $Controller ?></strong> のアクション
+        <strong><?= $action ?></strong> を実行するためのパラメータ数が誤っています。
+    </p>
+</div>
+
+<div class="flash info">
+    <?php // 情報表示：実際に呼び出そうとしているメソッドシグネチャを表示 ?>
+    <p>
+        <strong>情報: </strong>
+        次のように呼び出そうとしています：<br>
+        <em class="file">
+            <?= $controller , '->', $action , '("', implode('","', $parameters) , '");' ?>
+        </em><br>
+        しかし、このメソッドが受け取るパラメータ数と一致していません。
+    </p>
+</div>
+
+<div class="flash valid">
+    <?php // 解決策の候補を列挙 ?>
+    <h1>解決方法</h1>
+    <ul>
+        <li>
+            リクエストURLに、正しい数のパラメータを送信してください。
+        </li>
+
+        <li>
+            コントローラー <strong><?= $Controller ?>Controller</strong> の
+            アクション <em><?= $action ?></em> の引数定義を、
+            必要なパラメータ数に合わせてください。
+<pre>
+<?php
+// パラメータを明示的に定義する例
+highlight_string("<?php
+class {$Controller} extends AppController
+{
+    public function {$action}( \$param1, \$param2, ... , \$paramN)
+    {
+        // ここに処理を実装してください
+    }
+}
+");
+?>
+</pre>
+        </li>
+
+        <li>
+            URL から常に値が渡されるとは限らないパラメータには、
+            コントローラー <strong><?= $Controller ?>Controller</strong> の
+            アクション <em class="file"><?= $action ?></em> 内でデフォルト値を設定してください。
+<pre>
+<?php
+// デフォルト値を設定する例
+highlight_string("<?php
+class {$Controller} extends AppController
+{
+    public function {$action}( \$param1 , \$param2 = NULL , \$param3 = 'デフォルト値')
+    {
+        // ここに処理を実装してください
+    }
+}
+");
+?>
+</pre>
+        </li>
+
+        <li>
+            コントローラー <strong><?= $Controller ?>Controller</strong> で、
+            パラメータ数チェックを無効にするために
+            <em>$limit_params</em> プロパティを <em>FALSE</em> に設定してください。
+<pre>
+<?php
+// パラメータ数の制限を無効にする例
+highlight_string("<?php
+class {$Controller} extends AppController
+{
+    public \$limit_params = FALSE;
+}
+");
+?>
+</pre>
+        </li>
+    </ul>
+</div>

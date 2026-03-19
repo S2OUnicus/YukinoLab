@@ -1,0 +1,33 @@
+<div class="flash error">
+    <?php // エラー表示：指定されたコントローラーが見つからない場合 ?>
+    <h1>コントローラーが見つかりません</h1>
+    <p>
+        <strong>エラー: </strong>
+        <em><?= $Controller ?>Controller</em> は存在しないか、見つかりません。
+    </p>
+</div>
+
+<div class="flash valid">
+    <?php // 解決方法の案内 ?>
+    <h1>解決方法</h1>
+    <h4>
+        <strong>
+            下記のクラス <em><?= $Controller ?>Controller</em> を、次のファイルに作成してください：<br>
+            <em class="file">
+                <?= APP_PATH, 'controllers/', $controller_path, '_controller.php' ?>
+            </em>
+        </strong>
+    </h4>
+
+    <pre>
+<?php
+// コントローラークラスの雛形をハイライト表示
+highlight_string("<?php
+class {$Controller}Controller extends AppController
+{
+    // ここにアクションメソッドなどを実装してください
+}
+");
+?>
+    </pre>
+</div>

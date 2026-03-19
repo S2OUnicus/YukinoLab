@@ -1,0 +1,14 @@
+<h1><?= $e::class ?></h1>
+
+<div class="error flash">
+    <?php
+    // 例外メッセージとコードを画面に表示（XSS対策のためエスケープ）
+    echo htmlspecialchars("{$e->getMessage()} ({$e->getCode()})", ENT_NOQUOTES, 'UTF-8');
+    ?>
+    <p>
+        <!-- 例外が発生したファイル名と行番号を日本語で表示 -->
+        ファイル <em class="file">
+            <?= htmlspecialchars($e->getFile(), ENT_NOQUOTES, 'UTF-8') ?>
+        </em> の <em><?= $e->getLine() ?></em> 行目でエラーが発生しました。
+    </p>
+</div>

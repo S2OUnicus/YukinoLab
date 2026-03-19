@@ -1,0 +1,422 @@
+@charset "UTF-8";
+
+/*
+*  $$ z-index 索引 $$
+*
+*  - header        : 99
+*/
+
+/*
+*  $$ 目次 $$
+*
+*  - :root                 属性変数
+*  - *                     全体タグ
+*
+*  - html, body            ページ本体
+*  - a, div, scrollbar ..  一般タグ
+*
+*  - .uk-*                 Uikit 仕様再設定
+*  - .no-select ..         通用仕様クラス
+*
+*  - #stage                ステージ本体
+*  - header                ヘッダー：お知らせ
+*  - nav, main, footer     ステージで他の部分
+*
+*  - nav > *               ナビ部分 - 詳細
+*  - main > *              メイン部分 - 詳細
+*  - footer > *            フッター部分 - 詳細
+*
+*  - aside                 モダル部分
+*  - aside > *             モダル部分 - 詳細
+*
+*  - @media scr and (o:p)  モバイルでの仕様
+*/
+
+
+/*
+*  属性変数
+*  @ 通用色など変数
+*
+*  # セレクター
+*    - :root
+*/
+
+:root {
+    --scrollbar-track-bg: rgba(0, 0, 0, 0.06);
+    --scrollbar-thumb-bg: rgba(0, 0, 0, 0.12);
+
+    --page-bg-color: hsl(65 25% 90%);
+    --st-nav-bg-color: #9cd9ac;
+    --st-main-bg-color: #efe6c6;
+    --st-ft-bg-color: #ffce90;
+}
+
+
+/*
+*  全体タグ
+*  @ 全体適用仕様
+*
+*  # セレクター
+*    - *
+*/
+
+* {
+    /* 初期フォント：Zen Maru Gothic */
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    /* 文字をはっきりと書くように */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    box-sizing: border-box!important;
+}
+
+
+/*
+*  ページ本体
+*  @ ページ全体（容器）に適用
+*
+*  # セレクター
+*    - html, body
+*/
+
+html, body {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
+/*
+*  一般タグ
+*  @ 通用的内容や機能タグ
+*
+*  # セレクター
+*    - a
+*    - div
+*    - ::-webkit-scrollbar*
+*/
+
+/* リンク */
+a {
+    color: #00d;
+}
+
+a:hover {
+    color: #00d!important;
+}
+
+/* 一般容器 */
+div {
+    /* 寸法確認ため、DIV全部 border-box 化 */
+    box-sizing: border-box!important;
+    overflow: hidden;
+}
+
+/* ===== スクロールバー ===== */
+
+/* Firefox（標準プロパティ） */
+* {
+    /* 細いスクロールバー */
+    scrollbar-width: thin;
+    /* thumb色 track色 の順 */
+    scrollbar-color: var(--scrollbar-thumb-bg) var(--scrollbar-track-bg);
+}
+
+/* Chrome, Edge, Safari（Blink & WebKit） */
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background: var(--scrollbar-track-bg);
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: var(--scrollbar-thumb-bg);
+    -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/*
+*  Uikit 仕様再設定
+*  @ Uikit の仕様を上書き設定
+*
+*  # セレクター
+*    - .uk-*
+*/
+
+/* ===  目次インデックス  === */
+
+/* Breadcrumb 目次ガイド */
+.uk-breadcrumb {
+    padding: .3rem 1.3rem;
+
+    background-color: rgba(0, 0, 0, .05) !important;
+}
+
+/* Breadcrumb 目次ガイド：内容要素 */
+.uk-breadcrumb > * > * {
+    color: #333!important;
+}
+
+/* Breadcrumb 目次ガイド：分割記号 */
+.uk-breadcrumb>:nth-child(n+2):not(.uk-first-column)::before {
+    color: #222!important;
+    margin: 0 10px!important;
+}
+
+/* Breadcrumb 目次ガイド：今のページを強調 */
+#pagePath > li:last-child > a {
+    font-weight: bold!important;
+}
+
+/* ===  文章正文  === */
+
+/* 分割線 */
+.uk-hr, hr {
+    border-top: 1px solid #111!important;
+}
+
+
+/* === モダル === */
+.uk-modal-dialog {
+    border-radius: .8rem;
+}
+
+.uk-modal-header {
+    box-shadow: 0 .4rem 1rem .2rem rgba(0, 0, 0, .06);
+}
+
+.uk-modal-footer {
+    box-shadow: 0 -.4rem 1rem .2rem rgba(0, 0, 0, .06);
+}
+
+/* === ボタン === */
+.uk-button {
+    border-radius: .4rem;
+}
+
+/*
+*  通用仕様クラス
+*  @ クラス化した専用仕様
+*
+*  # セレクター
+*    - .no-select
+*/
+
+/* 選択禁止クラス */
+.no-select {
+    -moz-user-select: none;
+    -o-user-select:none;
+    -khtml-user-select:none;
+    -webkit-user-select:none;
+    -ms-user-select:none;
+    user-select:none!important;
+}
+
+
+/*
+*  ステージ本体
+*  @ ページ容器のなか、すべての内容を載せるボックス
+*
+*  # セレクター
+*    - #stage
+*/
+
+#stage {
+    position: absolute; /* header のため */
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background-color: var(--page-bg-color);
+}
+
+
+/*
+*  ヘッダー：お知らせ
+*  @ header タグ
+*
+*  # セレクター
+*    - header
+*/
+
+/* お知らせ本体 */
+header {
+    position: fixed!important; /* uk-alert の属性をリセット*/
+    z-index: 99;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1.2rem;
+
+    color: #0a9e67!important;
+    background: rgba(195, 255, 233, .65)!important;
+    backdrop-filter: blur(1rem);
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+}
+
+
+/*
+*  ステージで他の部分
+*  @ nav, main, footer
+*
+*  # セレクター
+*  - nav
+*  - main
+*  - footer
+*/
+
+/* 統括仕様 */
+nav, main, footer {
+    width: 100%;
+}
+
+/* ナビゲーション */
+nav {
+    height: 5rem;
+
+    background: var(--st-nav-bg-color);
+}
+
+/* 真ん中部分 */
+main {
+    height: calc(100% - 5rem - 4rem); /* 上下の部分を引く */
+    /* background: var(--st-main-bg-color); */
+}
+
+/* フッター */
+footer {
+    height: 4rem;
+
+    font-size: .7rem;
+    line-height: 1.1rem;
+
+    background: var(--st-ft-bg-color);
+}
+
+/* モバイル仕様 */
+@media screen and (orientation: portrait) {
+    footer {
+        /* モバイルのとき、文字は少々縮小 */
+        font-size: .66rem;
+        line-height: 1rem;
+    }
+}
+
+
+/*
+*  ナビゲーション部分 - 詳細
+*  @ ページ一番上のロゴなど
+*
+*  # セレクター
+*    - nav > *
+*/
+
+/* === サイトロゴ === */
+
+#stLogo {
+    margin: 0 1rem;
+}
+
+#stLogo > a > img {
+    height: 4rem; /* ナビの 80% */
+}
+
+/* === ナビボタン === */
+#navBtnGroup {
+    width: calc(100% - 4rem - 1rem*2 - 1rem); /* ロゴ部分を引く */
+
+    margin-right: 1rem;
+}
+
+
+/*
+*  メイン部分 - 詳細
+*  @ 真ん中部分
+*
+*  # セレクター
+*    - main > *
+*/
+
+#pagePath {
+    width: 100%;
+    height: 2rem;
+
+    margin: 0;
+}
+
+#mainContent {
+    width: 100%;
+    height: calc(100% - 2rem); /* 目次部分を引く */
+
+    overflow: scroll;
+
+    padding: 1rem;
+}
+
+#mainText {
+}
+
+
+/*
+*  フッター部分 - 詳細
+*  @ CopyRight, 状態情報など
+*
+*  # セレクター
+*    - footer > *
+*/
+
+/* （保留） */
+
+
+/*
+*  モダル部分
+*  @ サブウインドウみたいポップアップ文字アリアの詳細
+*
+*  # セレクター
+*    - aside
+*/
+
+aside {
+}
+
+
+/*
+*  モダル部分 - 詳細
+*  @ モダル部分なかのもの
+*
+*  # セレクター
+*    - aside > *
+*/
+
+/* （保留） */
+
+
+/*
+*  モバイルでの仕様
+*  @ スマホなど広さは高さより大きいデバイスでの仕様
+*
+*  # セレクター
+*  - @media screen and (orientation: portrait) {}
+*/
+
+@media screen and (orientation: portrait) {
+    /* 保留 */
+}

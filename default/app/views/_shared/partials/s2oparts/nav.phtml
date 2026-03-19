@@ -1,0 +1,21 @@
+<!-- サイトロゴ -->
+<span id="stLogo" class="uk-flex uk-flex-center uk-flex-middle">
+    <?php // echo Html::link('', Html::img('favicon.ico', 'Logo'), 'title="ホーム"') ?>
+
+    <a href="/" title="ホーム" hx-get="/" hx-target="#mainText" hx-select="#mainText" hx-select-oob="#pageBreadcrumb" hx-swap="innerHTML" hx-push-url="true">
+        <img src="<?= PUBLIC_PATH ?>favicon.ico" alt="Logo">
+    </a>
+</span>
+
+<!-- 機能ショットカット（横置き） -->
+<span id="navBtnGroup" class="uk-flex uk-flex-right uk-flex-middle">
+    <button class="uk-button uk-flex uk-flex-center uk-flex-middle  uk-margin-small-right" hx-get="/" hx-target="#mainText" hx-select="#mainText" hx-select-oob="#pageBreadcrumb" hx-swap="innerHTML" hx-push-url="true">
+        Index
+    </button>
+
+    <button class="uk-button uk-flex uk-flex-center uk-flex-middle  uk-margin-small-right" hx-get="/Test1/func2/para1/para2" hx-target="#mainText" hx-select="#mainText" hx-select-oob="#pageBreadcrumb" hx-swap="innerHTML" hx-push-url="true">
+        Test
+    </button>
+
+    <button class="uk-button uk-flex uk-flex-center uk-flex-middle" type="button" uk-toggle="target: #modal-overflow">Modal</button>
+</span>

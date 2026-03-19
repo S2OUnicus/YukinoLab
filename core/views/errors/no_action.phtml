@@ -1,0 +1,41 @@
+<div class="flash error">
+    <?php // エラー表示：指定されたアクションが見つからない場合 ?>
+    <h1>アクションが見つかりません</h1>
+    <p>
+        <strong>エラー: </strong>
+        アクション <strong><?= $action ?></strong> が見つかりませんでした。<br>
+        正しく動作させるには、コントローラークラス <strong><?= $Controller ?></strong> に
+        <strong><?= $action ?></strong> という名前のメソッドを定義する必要があります。
+    </p>
+</div>
+
+<div class="flash valid">
+    <?php // 解決方法の案内 ?>
+    <h1>解決方法</h1>
+    <h4>
+        <strong>
+            下記のメソッド <em><?= $action ?></em> を、クラス <strong><?= $Controller ?></strong><br>
+            のファイル：<br>
+            <em class="file">
+                <?= APP_PATH, 'controllers/', $controller_path, '_controller.php' ?>
+            </em><br>
+            に追加してください。
+        </strong>
+    </h4>
+
+    <pre>
+<?php
+// コントローラーに追記すべきサンプルコードをハイライト表示
+highlight_string("<?php
+class {$Controller} extends AppController
+{
+    // {$action} アクション：ここに処理を実装してください
+    public function {$action}()
+    {
+
+    }
+
+}");
+?>
+    </pre>
+</div>
