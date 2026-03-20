@@ -6,6 +6,19 @@
 // 設定集を導入
 $config = Config::read('config');
 
+// サイト名
+$stName = $config['application']['name'] ?? 'YUKINO Lab';
+
+// テーマカラー
+$themeColor = $config['application']['themeColor'] ?? '#FFFFFF';
+
+// サイト作者
+$stAuthor = $config['application']['author'] ?? 'YUKINO, 如月キセキ (@S2OUnicus, @S2OValor, https://s2o.me/)';
+
+// タイムスタンプ
+$tsDate = date('Y-m-d H:i:s T');
+$tsNow = time();
+
 /*
 * その他
 */
@@ -19,29 +32,31 @@ $config = Config::read('config');
 
 	<meta name="referrer" content="origin-when-cross-origin">
 	<meta name="robots" content="index,follow">
-	<meta name="page-generated" content="<?php echo date('Y-m-d H:i:s T'); ?>">
+	<meta name="page-generated" content="<?= $tsDate ?>">
 
 	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<meta name="format-detection" content="telephone=no,email=no">
 	<meta name="google" content="notranslate">
 
-	<meta name="theme-color" content="#83CFCE">
-	<meta name="author" content="<?php echo $pgAuthor ?? $config['application']['author']; ?>">
+	<meta name="theme-color" content="<?= $themeColor ?>">
+	<meta name="author" content="<?= $stAuthor ?>">
 
-	<title><?php echo $pgTitle ?? $config['application']['name']; ?></title>
-
-    <link rel="icon" href="<?= PUBLIC_PATH ?>favicon.ico">
+	<title><?php echo $pgTitle ?? $stName; ?></title>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="<?= PUBLIC_PATH ?>favicon.ico">
 
 
     <!--
     -  外部 CSS レポジトリ
     -  @ 外部 UI 仕様
     -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.23.13/css/uikit.min.css" integrity="sha512-giAxX2Dm0fHfTxCGThgfHXfyqC+NAsPAMI39ZDfs70vsKGALMfsNEbxlq6rZxPWWjH685ehdfvTQJkAWEgxOPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Uikit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.23.13/css/uikit.min.css" integrity="sha512-giAxX2Dm0fHfTxCGThgfHXfyqC+NAsPAMI39ZDfs70vsKGALMfsNEbxlq6rZxPWWjH685ehdfvTQJkAWEgxOPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
     <!--
@@ -49,8 +64,13 @@ $config = Config::read('config');
     -  @ このサイトに適用する仕様
     -->
 
-    <!-- 開発用仕様 -->
-    <link rel="stylesheet" href="<?= PUBLIC_PATH ?>css/base.css?time=<?php echo time(); ?>">
+    <!-- 統括仕様 -->
+    <link rel="stylesheet" href="<?= PUBLIC_PATH ?>css/base.css?time=<?= $tsNow; ?>">
+
+    <!-- レイヤー仕様 -->
+    <link rel="stylesheet" href="<?= PUBLIC_PATH ?>css/layer/cover.css?time=<?= $tsNow; ?>">
+    <link rel="stylesheet" href="<?= PUBLIC_PATH ?>css/layer/ground.css?time=<?= $tsNow; ?>">
+    <link rel="stylesheet" href="<?= PUBLIC_PATH ?>css/layer/stage.css?time=<?= $tsNow; ?>">
 
     <!-- 本番ならコメントを解除：基本仕様 -->
     <?php /* echo Tag::css('base') */ ?>
@@ -184,7 +204,7 @@ $config = Config::read('config');
     -->
 
     <!-- 開発用仕様 -->
-    <script src="<?= PUBLIC_PATH ?>javascript/base.js?time=<?php echo time(); ?>"></script>
+    <script src="<?= PUBLIC_PATH ?>javascript/base.js?time=<?= $tsNow ?>"></script>
 
     <!-- 本番ならコメントを解除：基本機能 -->
     <?php /* echo Tag::js('base'); */ ?>
